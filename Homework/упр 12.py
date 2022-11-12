@@ -22,13 +22,13 @@ screen = pygame.display.set_mode((LimX, LimY))
 
 def new_ball():
     '''рисует новый шарик '''
-    r = randint(10, 100)
+    r = randint(30, 100)
     
     x = randint(r + 1, LimX - r - 1)
     y = randint(r + 1, LimY - r - 1)
     
-    vx = randint(-6, 6)
-    vy = randint(-6, 6)
+    vx = randint(-4, 4)
+    vy = randint(-4, 4)
     color = COLORS[randint(0, 5)]
     
     m = randint(0, 1)
@@ -45,7 +45,7 @@ def move(Ball):
     if y >= LimY - r or y < r:
         Ball[5] *= -1
     elif m:
-        Ball[5] += 3
+        Ball[5] += 1
     Ball[2] += Ball[4]
     Ball[3] += Ball[5]
     return Ball
@@ -65,18 +65,20 @@ while not finished:
     if len(Balls) < 10 and randint(1, 50) == 1:
         b = new_ball()
         Balls.append(b)
-    
     for b in Balls:
         b = move(b)
         draw_ball(b)
-    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             finished = True
         elif event.type == pygame.MOUSEBUTTONDOWN:
             for b in Balls:
-                if ():
+                xb, yb, rb = b[2], b[3], b[6]
+                xm, ym = event.pos
+                d = math.sqrt((xm - xb) ** 2 + (ym - yb) ** 2)
+                if d < rb:
                     print('Click!')
+                    Balls.remove(b)
     new_ball()
     pygame.display.update()
     screen.fill(BLACK)
