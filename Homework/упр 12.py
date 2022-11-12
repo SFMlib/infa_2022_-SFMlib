@@ -2,12 +2,14 @@ import pygame
 from pygame.draw import *
 from random import randint
 import math
+
+
 pygame.init()
 
 FPS = 60
 
-LimX = 1400
-LimY = 800
+LIMX = 1400
+LIMY = 800
 
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
@@ -17,15 +19,15 @@ MAGENTA = (255, 0, 255)
 CYAN = (0, 255, 255)
 BLACK = (0, 0, 0)
 COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
+screen = pygame.display.set_mode((LIMX, LIMY))
 
-screen = pygame.display.set_mode((LimX, LimY))
 
 def new_ball():
     '''рисует новый шарик '''
     r = randint(30, 100)
     
-    x = randint(r + 1, LimX - r - 1)
-    y = randint(r + 1, LimY - r - 1)
+    x = randint(r + 1, LIMX - r - 1)
+    y = randint(r + 1, LIMY - r - 1)
     
     vx = randint(-4, 4)
     vy = randint(-4, 4)
@@ -40,15 +42,16 @@ def move(Ball):
     y = Ball[3]
     r = Ball[6]
     m = Ball[7]
-    if x >= LimX - r or x < r:
+    if x >= LIMX - r or x < r:
         Ball[4] *= -1
-    if y >= LimY - r or y < r:
+    if y >= LIMY - r or y < r:
         Ball[5] *= -1
     elif m:
         Ball[5] += 1
     Ball[2] += Ball[4]
     Ball[3] += Ball[5]
     return Ball
+
 
 def draw_ball(Ball):
     circle(Ball[0], Ball[1], (Ball[2], Ball[3]), Ball[6])
