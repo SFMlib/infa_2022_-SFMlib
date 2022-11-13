@@ -25,7 +25,7 @@ screen = pygame.display.set_mode((LIMX, LIMY))
 
 def new_ball():
     '''рисует новый шарик '''
-    r = randint(30, 100)
+    r = randint(50, 100)
     
     x = randint(r + 1, LIMX - r - 1)
     y = randint(r + 1, LIMY - r - 1)
@@ -35,10 +35,11 @@ def new_ball():
     color = COLORS[randint(0, 5)]
     
     m = randint(0, 1)
-    C = 6
+    C = 5
     if not m:
         vx *= C
         vy *= C
+        r //= 2
     return [screen, color, x, y, vx, vy, r, m]
 
 
