@@ -65,13 +65,13 @@ finished = False
 Balls = []
 Score = 0
 
+
 while not finished:
     clock.tick(FPS)
     text_score = "Score " + str(Score)
     font = pygame.font.Font(None, 72)
     text = font.render(text_score, True, RED)
-    place = text.get_rect(center=(100, 50))
-    screen.blit(text, place)
+    place = text.get_rect(center=(125, 50))
     
     if len(Balls) < 10 and randint(1, 50) == 1:
         b = new_ball()
@@ -92,7 +92,9 @@ while not finished:
                     Score += 1
                     Balls.remove(b)
     new_ball()
+    screen.blit(text, place)
+    
     pygame.display.update()
     screen.fill(BLACK)
-
+print(text_score)
 pygame.quit()
