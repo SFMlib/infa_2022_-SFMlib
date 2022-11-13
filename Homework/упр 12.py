@@ -19,6 +19,7 @@ MAGENTA = (255, 0, 255)
 CYAN = (0, 255, 255)
 BLACK = (0, 0, 0)
 COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
+
 screen = pygame.display.set_mode((LIMX, LIMY))
 
 
@@ -62,9 +63,16 @@ clock = pygame.time.Clock()
 finished = False
 
 Balls = []
+Score = 0
 
 while not finished:
     clock.tick(FPS)
+    text_score = "Score " + str(Score)
+    font = pygame.font.Font(None, 72)
+    text = font.render(text_score, True, RED)
+    place = text.get_rect(center=(100, 50))
+    screen.blit(text, place)
+    
     if len(Balls) < 10 and randint(1, 50) == 1:
         b = new_ball()
         Balls.append(b)
@@ -81,6 +89,7 @@ while not finished:
                 d = math.sqrt((xm - xb) ** 2 + (ym - yb) ** 2)
                 if d < rb:
                     print('Click!')
+                    Score += 1
                     Balls.remove(b)
     new_ball()
     pygame.display.update()
