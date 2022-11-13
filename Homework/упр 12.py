@@ -35,6 +35,10 @@ def new_ball():
     color = COLORS[randint(0, 5)]
     
     m = randint(0, 1)
+    C = 6
+    if not m:
+        vx *= C
+        vy *= C
     return [screen, color, x, y, vx, vy, r, m]
 
 
@@ -84,12 +88,15 @@ while not finished:
             finished = True
         elif event.type == pygame.MOUSEBUTTONDOWN:
             for b in Balls:
-                xb, yb, rb = b[2], b[3], b[6]
+                xb, yb, rb, mb = b[2], b[3], b[6], b[7]
                 xm, ym = event.pos
                 d = math.sqrt((xm - xb) ** 2 + (ym - yb) ** 2)
                 if d < rb:
                     print('Click!')
-                    Score += 1
+                    if mb:
+                        Score += 1
+                    else:
+                        Score += 2
                     Balls.remove(b)
     new_ball()
     screen.blit(text, place)
