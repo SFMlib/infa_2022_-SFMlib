@@ -8,8 +8,8 @@ pygame.init()
 
 FPS = 60
 
-LIMX = 1400
-LIMY = 800
+LIMX = 1536
+LIMY = 864
 
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
