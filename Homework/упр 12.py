@@ -79,9 +79,7 @@ while not finished:
     if len(Balls) < 10 and randint(1, 50) == 1:
         b = new_ball()
         Balls.append(b)
-    for b in Balls:
-        b = move(b)
-        draw_ball(b)
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             finished = True
@@ -97,6 +95,9 @@ while not finished:
                     else:
                         Score += 2
                     Balls.remove(b)
+    
+    for b in Balls:
+        draw_ball(move(b))
     new_ball()
     screen.blit(text, place)
     
