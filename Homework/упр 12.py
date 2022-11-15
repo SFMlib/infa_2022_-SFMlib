@@ -22,6 +22,12 @@ COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
 screen = pygame.display.set_mode((LIMX, LIMY))
 
+pygame.display.update()
+clock = pygame.time.Clock()
+finished = False
+
+Balls = []
+Score = 0
 
 def new_ball():
     '''рисует новый шарик '''
@@ -61,14 +67,6 @@ def move(Ball):
 
 def draw_ball(Ball):
     circle(Ball[0], Ball[1], (Ball[2], Ball[3]), Ball[6])
-
-
-pygame.display.update()
-clock = pygame.time.Clock()
-finished = False
-
-Balls = []
-Score = 0
 
 
 while not finished:
